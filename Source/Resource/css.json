@@ -1,0 +1,252 @@
+{
+    "properties": {
+        "a": {
+            "for": "animation",
+
+            "default": {
+                "timing.function": [],
+                "duration": [],
+                "name": [],
+                "delay": [],
+                "fill.mode": [],
+                "iteration.count": [],
+                "direction": [],
+                "play.state": []
+            },
+
+            "sub": {
+
+            },
+
+            "separate": {
+
+            }
+        },
+
+        "bg": {
+            "for": "background",
+            
+            "default": {
+                "color": [],
+                "image": [],
+                "position": [],
+                "repeat": [],
+                "size": [],
+                "clip": []
+            },
+
+            "sub": {
+
+            },
+
+            "separate": {
+
+            }
+        },
+
+        "br": {
+            "for": "border",
+
+            "default": {
+                "radius": [],
+                "bottom": [],
+                "top": [],
+                "color": [],
+                "left": [],
+                "right": [],
+                "style": [],
+                "width": [],
+                "spacing": [],
+                "top.right": [],
+                "bottom.right": [],
+                "top.left": [],
+                "bottom.left": []
+            },
+
+            "sub": {
+
+            },
+
+            "separate": {
+                
+            }
+        },
+
+        "bx": {
+            "for": "box",
+
+            "default": {
+                "sizing": [],
+                "shadow": []
+            },
+
+            "sub": {
+
+            }
+        },
+
+        "d": {
+            "for": "display"
+        },
+
+        "fx": {
+            "for": "flex" 
+        },
+
+        "g": {
+            "for": "grid"
+        },
+
+        "h": {
+            "for": "height",
+
+            "default": [],
+
+            "sub": {
+                "max": {
+                    "height": []
+                }
+            }
+        },
+
+        "i": {
+            "for": "input",
+
+            "default": [],
+
+            "sub": [],
+            
+            "separate": {
+                "cursor": []
+            }
+        },
+
+        "m": {
+            "for": "margin"
+        },
+
+        "o": {
+            "for": "opacity"
+        },
+
+        "pd": {
+            "for": "padding",
+
+            "default": {
+
+            },
+
+            "sub": {
+
+            },
+
+            "separate": {
+
+            }
+        },
+
+        "ps": {
+            "for": "position",
+
+            "default": {
+
+            },
+
+            "sub": {
+
+            },
+
+            "separate": {
+                "top": [],
+                "left": []
+            }
+        },
+
+        "s": {
+            "for": "scroll"
+        },
+
+        "tb": {
+            "for": "table"
+        },
+
+        "tn": {
+            "for": "transition",
+
+            "default": {
+
+            },
+
+            "sub": {
+
+            },
+
+            "separate": {
+
+            }
+        },
+
+        "tx": {
+            "for": "text",
+
+            "default": {
+                "align": [],
+                "decoration": [],
+                "transform": [],
+                "overflow": [],
+                "shadow": []
+            },
+
+            "sub": {
+                "font": {
+                    "size": [],
+                    "family": [],
+                    "weight": [],
+                    "style": []
+                }
+            },
+
+            "separate": {
+                "color": []
+            }
+        },
+
+        "tr": {
+            "for": "transform",
+
+            "default": {
+
+            },
+
+            "sub": {
+
+            },
+
+            "separate": {
+
+            }
+        },
+
+        "w": {
+            "for": "width",
+
+            "default": [],
+            
+            "sub": {
+                "max": {
+                    "width": []
+                }
+            }
+        }
+    },
+
+    "states": {
+        "&hover": {
+            
+        },
+
+        "&focus": {
+
+        }
+    }
+}
