@@ -1,7 +1,6 @@
 import cjson from './Resource/css.json' assert {type: 'json'};
 
-document.querySelectorAll('[cjs]').forEach((e) => {
-    var attributes = e.attributes.getNamedItem('cjs').value;
+function compileCSS(attributes, e) {
     attributes.split(' ').forEach((attr) => {
         var attr = attr.split('-')
         if (attr[0] in cjson.properties) {
@@ -49,6 +48,9 @@ document.querySelectorAll('[cjs]').forEach((e) => {
                 }
             } else {
                 if (attr[1]) {
+                    try {attr[1] = attr[1].replaceAll('.', '-')} catch {}
+                    try {attr[1] = attr[1].replaceAll(',', ' ')} catch {}
+                    try {attr[2] = attr[2].replaceAll('.', '-')} catch {}
                     try {
                         attr[1] = eval(attr[1].replace('${', '').replace('}', ''))
                         e.style.cssText += `${source.for}: ${attr[1]}`
@@ -65,33 +67,54 @@ document.querySelectorAll('[cjs]').forEach((e) => {
         else if (attr[0] in cjson.states) {
             handleStates(e, attr)
         }
+
+        else if (attr[0] in cjson.presets) {
+            var source = cjson.presets[attr[0]][attr[1]][attr[2]]
+            e.style.cssText += source.css
+        }
         
         else {
             console.error("CSS property not included in css.json. Go to ./Resource/css.json and change properties or recheck property.")
         }
     })
+}
+
+document.querySelectorAll('[cjs]').forEach((e) => {
+    var attributes = e.attributes.getNamedItem('cjs').value;
+    compileCSS(attributes, e)
 })
 
 function handleStates(e, attr) {
-    var source = cjson.properties[attr[1]]
-    const initState = eval(`e.style.${source.for}`)
-
+    let initState;
+    e.attributes.getNamedItem('cjs').value.split(' ').forEach((el) => {
+        if (el.startsWith(attr[1])) {
+            initState = el;
+        }
+    })
+    
     if (attr[0] == '&hover') {
         e.onmouseover = function () {
-            e.style.cssText += `${source.for}-${attr[2]}: ${attr[3]}`
+            compileCSS(attr.toString().replace(`${attr[0]},`, '').replaceAll(',', '-'), e)
         }
 
         e.onmouseout = function () {
-            e.style.cssText += `${source.for}-${attr[2]}: ${initState}`
+            compileCSS(initState, e)
         }
     }
 
-    else if (attr[0] == '&focus') {
+    else if (attr[0] == '&click') {
         e.onclick = function () {
-            e.style.cssText += `${source.for}-${attr[2]}: ${attr[3]}`
+            if (e.getAttribute("clicked")) {
+                compileCSS(initState, e)
+                e.removeAttribute("clicked")
+            } else {
+                compileCSS(attr.toString().replace(`${attr[0]},`, '').replaceAll(',', '-'), e)
+                e.setAttribute("clicked", true)
+            }
+
             window.addEventListener('click', (el) => {
                 if (el.target != e) {
-                    
+                    compileCSS(initState, e)
                 }
             })
         }
